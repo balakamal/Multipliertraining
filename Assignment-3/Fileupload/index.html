@@ -1,0 +1,64 @@
+<!Doctype HTML>
+<html>
+<title>File Upload</title>
+<style>
+    .box {
+        width: max-content;
+        border: 5px;
+        border-radius: 2px;
+        border-style: double;
+        align-self: center;
+        margin-top: 5%;
+        padding: 3%;
+    }
+</style>
+
+<head>
+
+</head>
+
+<body>
+    <center>
+        <div class="box">
+            <h1><i>Upload File</i></h1>
+            <form name="frmUpdload" id="frmUpdload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="txtFile" class="txtFile" /><br><br>
+                <input type="submit" name="btnSubmit" value="Submit" />
+            </form>
+        </div>
+    </center>
+</body>
+
+<script>
+    $(document).ready(function() {
+        $("form#frmUpdload").submit(function() {
+            //Image validation start
+            var file_name = $('.txtFile').val();
+            var index_dot = file_name.lastIndexOf(".") + 1;
+            var ext = file_name.substr(index_dot);
+            if (file_name == '') {
+                alert('Please upload file');
+            } else {
+                //formdata object to send file upload data
+                var formData = new FormData();
+                formData.append('fileupload', $('.txtFile')[0].files[0], file_name);
+
+                $.ajax({
+                    url: 'upload.php',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function(data) {
+                        alert(data);
+                    }
+                });
+            }
+            $('#frmUpdload')[0].reset();
+            return false;
+        });
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</html>
