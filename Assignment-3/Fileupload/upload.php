@@ -1,5 +1,4 @@
 <?php
-//print_r($_FILES);	//Check all $_FILES variables
 $files=$_FILES['fileupload'];
 $tmp_name=$files['tmp_name'];
 $name=$files['name'];
