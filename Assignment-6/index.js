@@ -24,5 +24,5 @@ io.on('connection', function(socket) {
 
 //Listen port 3000
 http.listen(4000, function() {
-    console.log('listening on *:4000');
+    console.log('listening on :4000');
 });
